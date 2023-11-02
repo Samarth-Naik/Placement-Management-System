@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud_seeker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="seeker-body">
+            <div class="crud-main">
+                <div class="crud-second-row row">
+                    <div class="crud-second-col col col-12 crud-col">
+        
+                            <div class="final-table-main-container">
+                                <table class="table table-success table-striped final-table" style="min-height: 50%; max-width: 60%;">
+                                    <th>ID</th><th>NAME</th><th>EMAIL</th><th>BRANCH</th><th>CGPA</th>
+                                    <% records.forEach((element)=>{ %>
+                                        <tr>
+                                            <td class="table-dark"><%= element.s_id %></td>
+                                            <td class="table-dark"><%= element.s_name %></td>
+                                       <td class="table-dark"><%= element.s_email %></td>
+                                            <td class="table-dark"><%= element.s_branch %></td>
+                                            <td class="table-dark"><%= element.s_cgpa%></td>
+                                            </tr>
+                                    <%  }) %>
+                                </table>
+                                <div class="table-filter-main-container">
+                                    <form action="filter" method="post">
+                                        <div class="table-filter-content-container">
+                                            <div class="filter-container search-by">
+                                                <input type="number" placeholder="Search By ID" name="id">
+                                                <button type="submit" class="btn btn-primary" name="filter_btn" value="by_search">Search</button>
+                                            </div>
+                                            <div class="filter-container">
+                                                <label for="">Filter By :</label>
+                                                <button type="submit" class="btn btn-primary" name="filter_btn" value="by_id">ID</button>
+                                                <button type="submit" class="btn btn-primary" name="filter_btn" value="by_cgpa">CGPA/DEPT</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <table class="table table-success table-striped" style="min-height: 10%; max-width: 60%; margin-top: 2rem; visibility: <%=visible%>;">
+                                    <th>ID</th><th>NAME</th><th>EMAIL</th><th>BRANCH</th><th>CGPA</th>
+                                    <% set.forEach((element)=>{ %>
+                                        <tr>
+                                            <td class="table-dark"><%= element.s_id %></td>
+                                            <td class="table-dark"><%= element.s_name %></td>
+                                            <td class="table-dark"><%= element.s_email %></td>
+                                            <td class="table-dark"><%= element.s_branch %></td>
+                                            <td class="table-dark"><%= element.s_cgpa%></td>
+                                            </tr>
+                                    <%  }) %>
+                                </table>
+                            </div>
+ 
+                    </div>
+
+                </div>
+
+                <form action="/crud_initial" method="get">
+                    <button type="submit" class="btn btn-outline-dark request-go-back">Go Back</button>
+                </form>
+                <div class="crud-first-row row">
+                    <div class="crud-left-col col col-4 crud-col">
+
+                        <form action="/ops/seeker/insert" class="insert-form" method="post">
+   
+                            <input class="form-inputs" type="number" name="sid" id="" placeholder="ID" >
+                            <input class="form-inputs" type="text" name="sname" id="" placeholder="Name" >
+                            <input class="form-inputs" type="email" name="semail" id="" placeholder="Email" >
+                            <!-- <input class="form-inputs" type="number" name="sphone" id="" placeholder="Contact" > -->
+                            <input class="form-inputs" type="text" name="skill" id="" placeholder="Skill">
+                            <input class="form-inputs" type="text" name="sbranch" id="" placeholder="Branch" >
+                            <input class="form-inputs" type="number" name="scgpa" id="" placeholder="CGPA" step="0.1" min="0" max="10" >
+                            <button id="inst" type="submit" class="btn btn-success seeker-btn">Insert</button>
+                        </form>
+                    </div>
+
+                    <div class="crud-mid-col col col-4 crud-col">
+                        <form action="/ops/seeker/delete" method="post" class="delete-form">
+                            <input type="number" name="sid" id="" placeholder="Enter ID to Delete">
+                            <button id="del" type="submit" class="btn btn-danger seeker-btn">Delete</button>
+                        </form>
+                        <form action="/connection_xampp" method="get">
+                            <button type="submit" id="flt" class="btn btn-warning filter-btn">Import Data</button>
+                        </form>
+                    </div>
+
+                    <div class="crud-right-col col col-4 crud-col">
+                        <form action="/ops/seeker/update" method="post" class="update-form">
+                            <input class="form-inputs" type="number" name="sid" id="" placeholder="Enter ID to Update">
+                            <input class="form-inputs" type="text" name="sname" id="" placeholder="Name" >
+                            <input class="form-inputs" type="email" name="semail" id="" placeholder="Email" >
+                            <!-- <input class="form-inputs" type="tel" name="sphone" id="" placeholder="Contact" > -->
+                            <input class="form-inputs" type="text" name="skill" id="" placeholder="Skill">
+                            <input class="form-inputs" type="text" name="sbranch" id="" placeholder="Branch">
+                            <input class="form-inputs" type="number" name="scgpa" id="" placeholder="CGPA" step="0.1" min="0" max="10" >
+                            <button id="updt" type="submit" class="btn btn-primary seeker-btn">Update</button>
+                        </form>
+                    </div>
+
+                </div>
+
+    </div>
+</body>
+</html>
